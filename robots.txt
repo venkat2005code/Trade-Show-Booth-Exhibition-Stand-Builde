@@ -1,0 +1,9 @@
+# Replace the sitemap host with your production domain before launch.
+User-agent: *
+Allow: /
+Disallow: /pages/admin-dashboard.html
+Disallow: /pages/login.html
+Disallow: /pages/register.html
+Disallow: /pages/404.html
+
+Sitemap: https://www.standform.example/sitemap.xml

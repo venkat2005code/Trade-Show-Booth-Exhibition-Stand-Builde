@@ -1,0 +1,72 @@
+/* ==========================================================================
+   rtl.css: Arabic / Hebrew support.
+   style.css already uses logical properties (margin-inline, padding-inline, inset-inline,
+   text-align: start / end), so this file only handles what logical properties cannot:
+   directional icons, animations, translate() transforms, background-image positions and fonts.
+   Activated by <html dir="rtl">. Test it with the footer "Test RTL" button, the drawer RTL button,
+   or by adding ?dir=rtl to any URL. Images are intentionally NOT mirrored.
+   ========================================================================== */
+
+[dir="rtl"] body,
+[dir="rtl"] .input,
+[dir="rtl"] button {
+  font-family: "Segoe UI", "Noto Sans Arabic", "Noto Sans Hebrew", Tahoma, var(--font-body);
+}
+[dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4,
+[dir="rtl"] .display, [dir="rtl"] .logo__word, [dir="rtl"] .btn {
+  font-family: "Segoe UI", "Noto Sans Arabic", "Noto Sans Hebrew", Tahoma, Arial, sans-serif;
+  letter-spacing: 0;
+}
+[dir="rtl"] .logo__word { letter-spacing: .08em; }
+[dir="rtl"] .eyebrow, [dir="rtl"] .badge, [dir="rtl"] .stand-tag, [dir="rtl"] .footer-h { letter-spacing: 0; }
+
+/* directional icons (arrows) */
+[dir="rtl"] .icon--flip { transform: scaleX(-1); }
+[dir="rtl"] .icon--prev { transform: none; }
+[dir="rtl"] .btn:hover .icon,
+[dir="rtl"] .link-arrow:hover .icon { transform: translateX(-4px); }
+[dir="rtl"] .btn:hover .icon--flip,
+[dir="rtl"] .link-arrow:hover .icon--flip { transform: scaleX(-1) translateX(4px); }
+[dir="rtl"] .ind-row:hover .icon { transform: scaleX(-1) rotate(45deg); }
+[dir="rtl"] .next-steps__list a:hover { transform: translateX(-4px); }
+
+/* email / phone stay left-to-right inside RTL forms */
+[dir="rtl"] input[type="email"],
+[dir="rtl"] input[type="tel"],
+[dir="rtl"] input[type="url"] { direction: ltr; text-align: right; }
+
+/* select arrow */
+[dir="rtl"] .select { background-position: left 14px center; }
+
+/* navigation */
+[dir="rtl"] .nav__link::after { transform-origin: right; }
+
+/* motion */
+[dir="rtl"] .ticker__track { animation-name: ticker-rtl; }
+@keyframes ticker-rtl { to { transform: translateX(50%); } }
+[dir="rtl"] .rail__l { transform: translateX(6px); }
+[dir="rtl"] .rail a:hover .rail__l, [dir="rtl"] .rail a:focus-visible .rail__l { transform: none; }
+[dir="rtl"] .switch input:checked + .switch__ui::after { transform: translateX(-24px); }
+
+/* dashboard off-canvas menu slides in from the right */
+[dir="rtl"] .dash__side { transform: translateX(100%); }
+[dir="rtl"] .dash__side.is-open { transform: none; }
+@media (min-width: 1024px) { [dir="rtl"] .dash__side { transform: none; } }
+
+/* decorative glyphs and details */
+[dir="rtl"] .quote__mark { transform: scaleX(-1); }
+[dir="rtl"] .breadcrumb li + li::before { content: "\\"; }
+[dir="rtl"] .spec-tag--2 { inset-inline-end: 0; }
+[dir="rtl"] .step::after { transform: rotate(45deg); }
+[dir="rtl"] .crop--a { transform-origin: 70% 55%; }
+[dir="rtl"] .crop--b { transform-origin: 28% 60%; }
+[dir="rtl"] .timeline-h li::before { inset-inline-start: calc(var(--sp-6) * -1 - 7px); }
+@media (min-width: 1024px) { [dir="rtl"] .timeline-h li::before { inset-inline-start: 0; } }
+
+/* mobile drawer */
+[dir="rtl"] .drawer__list a { flex-direction: row; }
+
+/* Phone numbers and email addresses stay left-to-right inside RTL layouts */
+[dir="rtl"] a[href^="tel:"],
+[dir="rtl"] a[href^="mailto:"] { direction: ltr; unicode-bidi: isolate; }
+[dir="rtl"] a[href^="tel:"] > *, [dir="rtl"] a[href^="mailto:"] > * { unicode-bidi: isolate; }

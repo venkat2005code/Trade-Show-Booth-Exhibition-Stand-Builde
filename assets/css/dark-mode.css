@@ -1,0 +1,103 @@
+/* ==========================================================================
+   dark-mode.css
+   Dark theme tokens and the handful of components that need more than a token swap.
+   Activation order:
+   1. <html data-theme="dark">   (set by the toggle or by main.js from localStorage / system preference)
+   2. No data-theme attribute + prefers-color-scheme: dark   (works even without JavaScript)
+   <html data-theme="light"> always wins over the system preference.
+   ========================================================================== */
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-background: #0a0b0d;
+  --color-surface: #13161b;
+  --color-surface-2: #171a20;
+  --color-surface-3: #1f232b;
+  --color-text: #f2f3f5;
+  --color-muted: #a3aab5;
+  --color-border: #2a2f38;
+  --color-accent-text: #ff7a45;
+  --color-focus: #ffb38f;
+  --color-input-bg: #0e1116;
+  --color-input-border: #5b626e;
+  --color-dark-bg: #12151a;
+  --color-dark-2: #1a1e25;
+  --color-dark-3: #22272f;
+  --color-success: #4fd08e;
+  --color-warning: #f0a33a;
+  --color-danger: #ff8a90;
+  --color-info: #8aa9ff;
+  --btn-dark-bg: #f2f3f5;
+  --btn-dark-fg: #0e1013;
+  --color-header-bg: rgba(10, 11, 13, .88);
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, .5), 0 8px 24px -12px rgba(0, 0, 0, .8);
+  --shadow-2: 0 2px 4px rgba(0, 0, 0, .5), 0 24px 48px -20px rgba(0, 0, 0, .9);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --color-background: #0a0b0d;
+    --color-surface: #13161b;
+    --color-surface-2: #171a20;
+    --color-surface-3: #1f232b;
+    --color-text: #f2f3f5;
+    --color-muted: #a3aab5;
+    --color-border: #2a2f38;
+    --color-accent-text: #ff7a45;
+    --color-focus: #ffb38f;
+    --color-input-bg: #0e1116;
+    --color-input-border: #5b626e;
+    --color-dark-bg: #12151a;
+    --color-dark-2: #1a1e25;
+    --color-dark-3: #22272f;
+    --color-success: #4fd08e;
+    --color-warning: #f0a33a;
+    --color-danger: #ff8a90;
+    --color-info: #8aa9ff;
+    --btn-dark-bg: #f2f3f5;
+    --btn-dark-fg: #0e1013;
+    --color-header-bg: rgba(10, 11, 13, .88);
+  }
+  :root:not([data-theme="light"]) .theme-sun { display: none; }
+  :root:not([data-theme="light"]) .theme-moon { display: block; }
+}
+
+/* Sections that use the .on-dark token set must keep their own text colours */
+[data-theme="dark"] .on-dark { --color-accent-text: var(--color-accent); }
+
+/* Components that need more than tokens */
+[data-theme="dark"] .quote--big { background: var(--color-accent); color: #0e1013; }
+[data-theme="dark"] .quote--big .quote__ctx { color: #2b1a10; }
+[data-theme="dark"] .quote--big .quote__mark { color: #0e1013; }
+[data-theme="dark"] .frame { background: rgba(255, 255, 255, .02); }
+[data-theme="dark"] .why__list,
+[data-theme="dark"] .cap-grid,
+[data-theme="dark"] .results { border-color: rgba(255, 255, 255, .1); }
+[data-theme="dark"] .calc__result,
+[data-theme="dark"] .side-card--cta { border: 1px solid var(--color-border); }
+[data-theme="dark"] .pcard:hover,
+[data-theme="dark"] .svc:hover,
+[data-theme="dark"] .plan:hover,
+[data-theme="dark"] .bcard:hover,
+[data-theme="dark"] .chip:hover,
+[data-theme="dark"] .next-steps__list a:hover { border-color: var(--color-accent); }
+[data-theme="dark"] .ind-list,
+[data-theme="dark"] .principles,
+[data-theme="dark"] .big-steps { border-color: var(--color-border); }
+[data-theme="dark"] .gantt__row:nth-child(even) .gantt__bar { background: #d8dbe0; }
+[data-theme="dark"] .form-alert { background: rgba(255, 138, 144, .12); }
+[data-theme="dark"] .form-status.is-success { background: rgba(79, 208, 142, .14); }
+[data-theme="dark"] .form-status.is-error { background: rgba(255, 138, 144, .12); }
+[data-theme="dark"] .check input::before { background: #0e1013; }
+[data-theme="dark"] .toast { border-inline-start-color: var(--color-accent); }
+[data-theme="dark"] .page-admin { background: var(--color-background); }
+[data-theme="dark"] .breadcrumb a:hover { color: var(--color-accent); }
+[data-theme="dark"] img { filter: none; }
+[data-theme="dark"] ::selection { background: var(--color-accent); color: #0e1013; }
+
+/* Dashboard chart series and axis: same hues stepped for the dark surface */
+[data-theme="dark"] .chart { --series-1: #3987e5; --series-2: #d95926; --series-3: #199e70; --series-4: #c98500; --series-5: #d55181; --chart-axis: #383835; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .chart { --series-1: #3987e5; --series-2: #d95926; --series-3: #199e70; --series-4: #c98500; --series-5: #d55181; --chart-axis: #383835; }
+}
